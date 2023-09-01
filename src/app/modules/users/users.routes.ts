@@ -6,6 +6,8 @@ const router = express.Router();
 router.get('/', UserController.getAllUsers);
 router.get('/:id', UserController.getAllUsersById);
 router.patch('/:id', UserController.updateUsers);
+router.delete('/:id', UserController.deleteUser);
+
 
 // router.patch(
 //   '/:id',
