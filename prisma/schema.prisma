@@ -65,7 +65,7 @@ model Order {
   id           String      @id @default(uuid())
   userId       String
   orderedBooks Json
-  status       orderStatus @default(PENDING)
+  status       orderStatus @default(pending)
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
 
@@ -73,12 +73,12 @@ model Order {
 }
 
 enum orderStatus {
-  PENDING
-  SHIPPED
-  DELIVERED
+  pending
+  shipped
+  delivered
 }
 
 enum userRole {
-  ADMIN
-  CUSTOMER
+  admin
+  customer
 }

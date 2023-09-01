@@ -1,11 +1,11 @@
 import express from 'express';
-import { UserAuthController } from './users.controller';
-
+import { UserController } from './users.controller';
 
 const router = express.Router();
 
-router.post('/signup', UserAuthController.createNewUser);
-router.post('/login', UserAuthController.userLogin);
+router.get('/', UserController.getAllUsers);
+router.get('/:id', UserController.getAllUsersById);
+router.patch('/:id', UserController.updateUsers);
 
 // router.patch(
 //   '/:id',
@@ -20,4 +20,4 @@ router.post('/login', UserAuthController.userLogin);
 //   AcademicDepartmentController.deleteByIdFromDB
 // );
 
-export const UserAuthRoutes = router;
+export const UserRoutes = router;
