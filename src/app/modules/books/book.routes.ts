@@ -1,13 +1,13 @@
 import express from 'express';
-import { CategoryController } from './category.controller';
+import { BookController } from './book.controller';
 
 const router = express.Router();
 
-router.post('/', CategoryController.createCategory);
-router.get('/', CategoryController.getAllCategory);
-router.get('/:id', CategoryController.getAllCategoryById);
-router.patch('/:id', CategoryController.updateCategory);
-router.delete('/:id', CategoryController.deleteCategory);
+router.post('/', BookController.createBook);
+router.get('/', BookController.getAllBook);
+router.get('/:id', BookController.getAllBookById);
+router.patch('/:id', BookController.updateBook);
+router.delete('/:id', BookController.deleteBook);
 
 // router.patch(
 //   '/:id',
@@ -22,4 +22,4 @@ router.delete('/:id', CategoryController.deleteCategory);
 //   AcademicDepartmentController.deleteByIdFromDB
 // );
 
-export const CategoryRoutes = router;
+export const BookRoutes = router;
