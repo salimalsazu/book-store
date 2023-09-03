@@ -8,6 +8,7 @@ import ApiError from '../../../errors/ApiError';
 import httpStatus from 'http-status';
 import { ENUM_USER_ROLE } from '../../../enums/user';
 
+//new Order
 const createNewOrder = async (data: IOrderRequest, token: string) => {
   let decodedToken;
   try {
@@ -28,6 +29,7 @@ const createNewOrder = async (data: IOrderRequest, token: string) => {
   return result;
 };
 
+//All Order
 const getAllOrders = async (token: string) => {
   let decodedToken;
   try {
@@ -99,6 +101,8 @@ const getAllOrders = async (token: string) => {
 
   return result;
 };
+
+//Single Order
 const getSingleOrder = async (token: string, id: string) => {
   let decodedToken;
   try {
