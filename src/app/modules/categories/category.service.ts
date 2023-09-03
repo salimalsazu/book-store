@@ -1,6 +1,7 @@
 import { Category } from '@prisma/client';
 import prisma from '../../../shared/prisma';
 
+//Category create
 const createNewCategory = async (data: Category): Promise<Category> => {
   const result = await prisma.category.create({
     data,
@@ -11,6 +12,7 @@ const createNewCategory = async (data: Category): Promise<Category> => {
   return result;
 };
 
+//All Category
 const getAllCategory = async (): Promise<Category[]> => {
   const result = await prisma.category.findMany({
     include: {
@@ -20,6 +22,7 @@ const getAllCategory = async (): Promise<Category[]> => {
   return result;
 };
 
+//Single category
 const getAllCategoryById = async (id: string): Promise<Category | null> => {
   const result = await prisma.category.findUnique({
     where: {
@@ -32,6 +35,7 @@ const getAllCategoryById = async (id: string): Promise<Category | null> => {
   return result;
 };
 
+//Update category
 const updateCategory = async (
   id: string,
   payload: Partial<Category>
@@ -45,6 +49,7 @@ const updateCategory = async (
   return result;
 };
 
+//Delete a category
 const deleteCategory = async (id: string): Promise<Category> => {
   const result = await prisma.category.delete({
     where: {
