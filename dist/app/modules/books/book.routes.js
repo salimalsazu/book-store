@@ -12,7 +12,7 @@ const router = express_1.default.Router();
 router.post('/create-book', (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN), book_controller_1.BookController.createBook);
 router.get('/', book_controller_1.BookController.getAllBook);
 router.get('/:id', book_controller_1.BookController.getAllBookById);
-router.get('/:categoryId/category ', book_controller_1.BookController.getBookByCategory);
 router.patch('/:id', (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN), book_controller_1.BookController.updateBook);
 router.delete('/:id', (0, auth_1.default)(user_1.ENUM_USER_ROLE.ADMIN), book_controller_1.BookController.deleteBook);
+router.get('/:categoryId/category', book_controller_1.BookController.getBookByCategory);
 exports.BookRoutes = router;
