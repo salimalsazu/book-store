@@ -8,6 +8,7 @@ import httpStatus from 'http-status';
 import { jwtHelpers } from '../../../helpers/jwtHelpers';
 import { Secret } from 'jsonwebtoken';
 
+//sign up
 const createNewUser = async (data: User): Promise<IUserReturn> => {
   const { password, ...newUserData } = data;
 
@@ -33,6 +34,7 @@ const createNewUser = async (data: User): Promise<IUserReturn> => {
   return result;
 };
 
+//login
 const userLogin = async (
   loginData: IUserLogin
 ): Promise<IUserLoginResponse | null> => {
