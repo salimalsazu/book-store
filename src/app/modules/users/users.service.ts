@@ -1,7 +1,6 @@
 import { User } from '@prisma/client';
 import prisma from '../../../shared/prisma';
 
-
 //Get All Users
 const getAllUser = async (): Promise<User[]> => {
   const result = await prisma.user.findMany({});
@@ -19,7 +18,7 @@ const getAllUsersById = async (id: string): Promise<User | null> => {
   return result;
 };
 
-
+//Update Users
 const updateUsers = async (
   id: string,
   payload: Partial<User>
@@ -32,7 +31,7 @@ const updateUsers = async (
   });
   return result;
 };
-
+//Delete Users
 const deleteUser = async (id: string): Promise<User> => {
   const result = await prisma.user.delete({
     where: {
