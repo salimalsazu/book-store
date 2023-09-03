@@ -1,5 +1,4 @@
-import { WeekDays } from '@prisma/client';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const asyncForEach = async (array: any[], callback: any) => {
   if (!Array.isArray(array)) {
     throw new Error('Expected an array');
@@ -8,4 +7,3 @@ export const asyncForEach = async (array: any[], callback: any) => {
     await callback(array[index], index, array);
   }
 };
-
