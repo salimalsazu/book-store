@@ -69,10 +69,24 @@ const deleteBook = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getBookByCategory = catchAsync(async (req: Request, res: Response) => {
+  const categoryId = req.params?.categoryId;
+  const options = pick(req.query, ['size', 'page', 'sortBy', 'sortOrder']);
+  const result = await BookService.getBookByCategory(categoryId, options);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Books with associated category data fetched successfully',
+    data: result,
+  });
+});
+
 export const BookController = {
   createBook,
   getAllBook,
   getAllBookById,
   updateBook,
   deleteBook,
+  getBookByCategory,
 };

@@ -6,6 +6,8 @@ import { IPaginationOptions } from '../../../interfaces/pagination';
 import { IGenericResponse } from '../../../interfaces/common';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { booksFilterableFields } from './book.contants';
+import ApiError from '../../../errors/ApiError';
+import httpStatus from 'http-status';
 
 const createNewBook = async (data: Book): Promise<Book> => {
   const result = await prisma.book.create({
@@ -21,7 +23,6 @@ const getAllBook = async (
   const { size, page, skip } = paginationHelpers.calculatePagination(options);
   const { search, minPrice, maxPrice, ...filterData } = filters;
 
-  
   console.log(filters);
 
   const conditions = [];
@@ -132,10 +133,61 @@ const deleteBook = async (id: string): Promise<Book> => {
   return result;
 };
 
+const getBookByCategory = async (
+  categoryId: string,
+  options: IPaginationOptions
+): Promise<IGenericResponse<Book[] | null>> => {
+  const { size, page, skip } = paginationHelpers.calculatePagination(options);
+
+  const isExistCategory = await prisma.category.findMany({});
+
+  if (!isExistCategory) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Category Not Exist');
+  }
+
+  const result = await prisma.book.findMany({
+    where: {
+      categoryId,
+    },
+    skip,
+    take: size,
+    include: {
+      category: true,
+      reviewAndRatings: true,
+    },
+  });
+
+  const total = await prisma.book.count({
+    where: {
+      categoryId,
+    },
+    skip,
+    take: size,
+  });
+  const totalPage = Math.ceil(total / size);
+  if (!result) {
+    throw new ApiError(
+      httpStatus.NOT_FOUND,
+      'Book Not Found on this category !!'
+    );
+  }
+
+  return {
+    meta: {
+      page,
+      size,
+      total,
+      totalPage,
+    },
+    data: result,
+  };
+};
+
 export const BookService = {
   createNewBook,
   getAllBook,
   getAllBookById,
   updateBook,
   deleteBook,
+  getBookByCategory,
 };
