@@ -1,12 +1,15 @@
 import { User } from '@prisma/client';
 import prisma from '../../../shared/prisma';
 
+
+//Get All Users
 const getAllUser = async (): Promise<User[]> => {
   const result = await prisma.user.findMany({});
 
   return result;
 };
 
+//Single Users
 const getAllUsersById = async (id: string): Promise<User | null> => {
   const result = await prisma.user.findUnique({
     where: {
@@ -15,6 +18,7 @@ const getAllUsersById = async (id: string): Promise<User | null> => {
   });
   return result;
 };
+
 
 const updateUsers = async (
   id: string,
