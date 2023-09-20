@@ -1,11 +1,10 @@
 import express from 'express';
 import { UserAuthController } from './users.controller';
 
-
 const router = express.Router();
 
 router.post('/signup', UserAuthController.createNewUser);
-router.post('/login', UserAuthController.userLogin);
+router.post('/signin', UserAuthController.userLogin);
 
 // router.patch(
 //   '/:id',
